@@ -1,0 +1,51 @@
+mysql> CREATE DATABASE Database
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Database' at line 1
+mysql> CREATE DATABASE Database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Database' at line 1
+mysql> CREATE DATABASE Database_System;
+Query OK, 1 row affected (0.42 sec)
+
+mysql> CREATE TABLE Students (
+    ->     StudentID INT PRIMARY KEY,
+    ->     Name VARCHAR(255),
+    ->     DateOfBirth DATE
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> USE Database_System;
+Database changed
+mysql> CREATE TABLE Students (
+    ->     StudentID INT PRIMARY KEY,
+    ->     Name VARCHAR(255),
+    ->     DateOfBirth DATE
+    -> );
+Query OK, 0 rows affected (13.21 sec)
+
+mysql> CREATE TABLE Courses (
+    ->     CourseID INT PRIMARY KEY,
+    ->     Title VARCHAR(255),
+    ->     Instructor VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> CREATE TABLE Enrollments (
+    ->     EnrollmentID INT PRIMARY KEY,
+    ->     StudentID INT,
+    ->     CourseID INT,
+    ->     FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    ->     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+    -> );
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> CREATE TABLE Grades (
+    ->     GradeID INT PRIMARY KEY,
+    ->     StudentID INT,
+    ->     CourseID INT,
+    ->     Grade VARCHAR(2),
+    ->     FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    ->     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+    -> );
+Query OK, 0 rows affected (0.23 sec)
+
+
+mysql> Terminal close -- exit!
